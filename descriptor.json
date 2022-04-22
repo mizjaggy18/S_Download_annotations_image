@@ -1,0 +1,117 @@
+{
+  "name": "Download_annotations_image",
+  "description": "To download annotations image either from job (algorithm) analysis or manual",
+  "schema-version": "cytomine-0.1",
+  "container-image": {
+    "image": "mizjaggy18/s_download_annotations_image",
+    "type": "singularity"
+  },
+  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGES] [CYTOMINE_ID_ANNOTATION_JOB] [CYTOMINE_ID_USER_JOB] [CYTOMINE_ID_TERMS] [CYTOMINE_ID_DOWNLOAD]",
+  "inputs": [
+    {
+      "id": "cytomine_host",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine host",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {
+      "id": "cytomine_public_key",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine public key",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {  
+      "id": "cytomine_private_key",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine private key",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {
+      "id": "cytomine_id_project",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine project ID",
+      "set-by-server": true,
+      "optional": false,
+      "type": "Number"
+    },
+    {
+      "id": "cytomine_id_software",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine software ID",
+      "set-by-server": true,
+      "optional": false,
+      "type": "Number"
+    },
+    {
+      "id": "cytomine_id_images",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Image IDs",
+      "description": "Images on which to classify objects",
+      "optional": false,
+      "type": "ListDomain",
+      "uri": "/api/project/$currentProject$/imageinstance.json",
+      "uri-print-attribute": "instanceFilename",
+      "uri-sort-attribute": "created"
+    },
+    {
+      "id": "cytomine_id_annotation_job",
+      "description": "Job ID of analysis which annotations to be downloaded",      
+      "name": "Cytomine Annotation Job ID",
+      "set-by-server": false,
+      "value-key": "[@ID]",
+      "optional": true,      
+      "type": "Domain",
+      "uri": "/api/job.json?project=$currentProject$",
+      "uri-sort-attribute": "softwareDate",
+      "uri-print-attribute": "softwareName",
+      "command-line-flag": "--@id"
+    },
+    {
+      "id": "cytomine_id_user_job",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine User ID for the Annotation Job",
+      "description": "User ID of job analysis",
+      "optional": true,
+      "type": "ListDomain",
+      "uri": "/api/userJob.json?project=$currentProject$",
+      "uri-sort-attribute": "softwareDate",
+      "uri-print-attribute": "softwareName"
+    },
+    {
+      "id": "cytomine_id_terms",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine term ID",
+      "description": "Ontology term ID for the regions/annotations that will be downloaded",
+      "optional": false,
+      "type": "ListDomain",
+      "uri": "/api/ontology/$currentOntology$/term.json",
+      "uri-print-attribute": "name",
+      "uri-sort-attribute": "name"
+    },
+    {
+      "id": "cytomine_id_download", 
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id", 
+      "name": "Download image option (1: Crop; 2: Alpha, 3: Crop, Alpha, Mask)", 
+      "description": "Type of image to be downloaded. 1: Crop only; 2: Alpha only, 3: Crop, Alpha and Mask",
+      "optional": false, 
+      "type": "Number", 
+      "values-choice": [1,2,3],
+      "default-value": 1
+    }
+  ]  
+}
