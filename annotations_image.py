@@ -131,8 +131,8 @@ def run(cyto_job, parameters):
                 
 
     finally:
-        logging.info("Deleting folder %s", working_path)
-        shutil.rmtree(working_path, ignore_errors=True)
+#         logging.info("Deleting folder %s", working_path)
+#         shutil.rmtree(working_path, ignore_errors=True)
         logging.debug("Leaving run()")
 
 
