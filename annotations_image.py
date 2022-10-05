@@ -112,11 +112,11 @@ def run(cyto_job, parameters):
                 for annotation in annotations:                    
                     # progress += progress_delta
                     # f.write("{};{};{};{};{};{};{};{};{}\n".format(annotation.id,annotation.image,annotation.project,annotations.job,annotation.term,annotation.user,annotation.area,annotation.perimeter,annotation.location))
-                    if download_option==1:
+                    if download_option==1: #crop
                         annotation.dump(dest_pattern=os.path.join(working_path, "crop", "{id}.png"))
-                    elif download_option==2:
+                    elif download_option==2: #alpha
                         annotation.dump(dest_pattern=os.path.join(working_path, "alpha", "{id}.png"), mask=True)
-                    elif download_option==3:
+                    elif download_option==3: #crop,alpha,mask
                         annotation.dump(dest_pattern=os.path.join(working_path, "crop", "{id}.png"))
                         annotation.dump(dest_pattern=os.path.join(working_path, "alpha", "{id}.png"), mask=True)
                         annotation.dump(dest_pattern=os.path.join(working_path, "mask", "{id}.png"), mask=True, alpha=True)
