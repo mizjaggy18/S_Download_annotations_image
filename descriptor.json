@@ -108,9 +108,9 @@
       "command-line-flag": "--@id", 
       "name": "Download image option (1: Crop; 2: Alpha, 3: Crop, Alpha, Mask)", 
       "description": "Type of image to be downloaded. 1: Crop only; 2: Alpha only, 3: Crop, Alpha and Mask",
-      "optional": false, 
-      "type": "Number", 
-      "values-choice": [1,2,3],
+      "optional": false,
+      "set-by-server": false,
+      "type": "Number",
       "default-value": 1
     }
   ]  
